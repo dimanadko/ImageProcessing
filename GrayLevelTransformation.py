@@ -1,12 +1,26 @@
 from PIL import Image
 from pylab import *
 
-im = array(Image.open('images/baboon.png').convert('L'))
+inputImage = array(Image.open('images/baboon.png').convert('L'))
 gray()
-im2 = 255 -im
-im3 = (100.0/255) *im + 100
-im4 = 255.0 *(im/255.0)**2
+negativeImage = 255 - inputImage
+limitedRangeImage = 100.0 * inputImage/255 + 100
+darkenedImage = 255.0 *(inputImage/255.0)**2
 
-imshow(im4)
+subplot(3,4,1)
+plt.imshow(inputImage)
+plt.title('Original')
 
-show();
+subplot(3,4,2)
+plt.imshow(negativeImage)
+plt.title('Negative')
+
+subplot(3,4,3)
+plt.imshow(limitedRangeImage)
+plt.title('Limited Range 100-200')
+
+subplot(3,4,4)
+plt.imshow(darkenedImage)
+plt.title('Darkened with square function')
+
+plt.show()
